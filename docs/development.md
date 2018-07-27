@@ -51,7 +51,7 @@ npm install
 cd ../bitcore-node
 npm install
 ```
-**Note**: If you get a message about not being able to download bitcoin distribution, you'll need to compile bitcoind from source, and setup your configuration to use that version.
+**Note**: If you get a message about not being able to download bitcoin distribution, you'll need to compile litecoinzd from source, and setup your configuration to use that version.
 
 
 We now will setup symlinks in `bitcore-node` *(repeat this for any other modules you're planning on developing)*:
@@ -59,14 +59,14 @@ We now will setup symlinks in `bitcore-node` *(repeat this for any other modules
 cd node_modules
 rm -rf bitcore-lib
 ln -s ~/bitcore-lib
-rm -rf bitcoind-rpc
-ln -s ~/bitcoind-rpc
+rm -rf litecoinzd-rpc
+ln -s ~/litecoinzd-rpc
 ```
 
 And if you're compiling or developing bitcoin:
 ```bash
 cd ../bin
-ln -sf ~/bitcoin/src/bitcoind
+ln -sf ~/bitcoin/src/litecoinzd
 ```
 
 ## Run Tests
@@ -85,12 +85,12 @@ npm run test
 
 To run a specific unit test in watch mode:
 ```bash
-mocha -w -R spec test/services/bitcoind.unit.js
+mocha -w -R spec test/services/litecoinzd.unit.js
 ```
 
 To run a specific regtest:
 ```bash
-mocha -R spec regtest/bitcoind.js
+mocha -R spec regtest/litecoinzd.js
 ```
 
 ## Running a Development Node
@@ -112,17 +112,17 @@ Edit `bitcore-node.json` with something similar to:
   "network": "livenet",
   "port": 3001,
   "services": [
-    "bitcoind",
+    "litecoinzd",
     "web",
     "insight-api",
     "insight-ui",
     "<additional_service>"
   ],
   "servicesConfig": {
-    "bitcoind": {
+    "litecoinzd": {
       "spawn": {
         "datadir": "/home/<youruser>/.bitcoin",
-        "exec": "/home/<youruser>/bitcoin/src/bitcoind"
+        "exec": "/home/<youruser>/bitcoin/src/litecoinzd"
       }
     }
   }

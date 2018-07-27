@@ -26,7 +26,7 @@ var fixtureData = {
   ]
 };
 
-var bitcoind = require('../').services.Bitcoin({
+var litecoinzd = require('../').services.Bitcoin({
   node: {
     datadir: process.env.HOME + '/.litecoinz',
     network: {
@@ -35,18 +35,18 @@ var bitcoind = require('../').services.Bitcoin({
   }
 });
 
-bitcoind.on('error', function(err) {
+litecoinzd.on('error', function(err) {
   console.error(err.message);
 });
 
-bitcoind.start(function(err) {
+litecoinzd.start(function(err) {
   if (err) {
     throw err;
   }
   console.log('Zcash started');
 });
 
-bitcoind.on('ready', function() {
+litecoinzd.on('ready', function() {
 
   console.log('Zcash ready');
 
@@ -64,12 +64,12 @@ bitcoind.on('ready', function() {
       var hashesLength = fixtureData.blockHashes.length;
       var txLength = fixtureData.txHashes.length;
 
-      function bitcoindGetBlockNative(deffered) {
+      function litecoinzdGetBlockNative(deffered) {
         if (c >= hashesLength) {
           c = 0;
         }
         var hash = fixtureData.blockHashes[c];
-        bitcoind.getBlock(hash, function(err, block) {
+        litecoinzd.getBlock(hash, function(err, block) {
           if (err) {
             throw err;
           }
@@ -78,7 +78,7 @@ bitcoind.on('ready', function() {
         c++;
       }
 
-      function bitcoindGetBlockJsonRpc(deffered) {
+      function litecoinzdGetBlockJsonRpc(deffered) {
         if (c >= hashesLength) {
           c = 0;
         }
@@ -97,7 +97,7 @@ bitcoind.on('ready', function() {
           c = 0;
         }
         var hash = fixtureData.txHashes[c];
-        bitcoind.getTransaction(hash, true, function(err, tx) {
+        litecoinzd.getTransaction(hash, true, function(err, tx) {
           if (err) {
             throw err;
           }
@@ -122,22 +122,22 @@ bitcoind.on('ready', function() {
 
       var suite = new benchmark.Suite();
 
-      suite.add('bitcoind getblock (native)', bitcoindGetBlockNative, {
+      suite.add('litecoinzd getblock (native)', litecoinzdGetBlockNative, {
         defer: true,
         maxTime: maxTime
       });
 
-      suite.add('bitcoind getblock (json rpc)', bitcoindGetBlockJsonRpc, {
+      suite.add('litecoinzd getblock (json rpc)', litecoinzdGetBlockJsonRpc, {
         defer: true,
         maxTime: maxTime
       });
 
-      suite.add('bitcoind gettransaction (native)', bitcoinGetTransactionNative, {
+      suite.add('litecoinzd gettransaction (native)', bitcoinGetTransactionNative, {
         defer: true,
         maxTime: maxTime
       });
 
-      suite.add('bitcoind gettransaction (json rpc)', bitcoinGetTransactionJsonRpc, {
+      suite.add('litecoinzd gettransaction (json rpc)', bitcoinGetTransactionJsonRpc, {
         defer: true,
         maxTime: maxTime
       });
@@ -158,7 +158,7 @@ bitcoind.on('ready', function() {
       throw err;
     }
     console.log('Finished');
-    bitcoind.stop(function(err) {
+    litecoinzd.stop(function(err) {
       if (err) {
         console.error('Fail to stop services: ' + err);
         process.exit(1);

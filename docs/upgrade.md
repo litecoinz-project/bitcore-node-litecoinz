@@ -8,7 +8,7 @@ This major upgrade includes changes to indexes, API methods and services. Please
 
 ### Indexes
 
-Indexes include *more information* and are now also *faster*. Because of this a **reindex will be necessary** when upgrading as the address and database indexes are now a part of bitcoind with three new `bitcoin.conf` options:
+Indexes include *more information* and are now also *faster*. Because of this a **reindex will be necessary** when upgrading as the address and database indexes are now a part of litecoinzd with three new `bitcoin.conf` options:
 - `-addressindex`
 - `-timestampindex`
 - `-spentindex`
@@ -18,7 +18,7 @@ To start reindexing add `reindex=1` during the **first startup only**.
 ### Configuration Options
 
 - The `bitcoin.conf` file in will need to be updated to include additional indexes *(see below)*.
-- The `datadir` option is now a part of `bitcoind` spawn configuration, and there is a new option to connect to multiple bitcoind processes (Please see [Bitcoin Service Docs](services/bitcoind.md) for more details). The services `db` and `address` are now a part of the `bitcoind` service. Here is how to update `bitcore-node.json` configuration options:
+- The `datadir` option is now a part of `litecoinzd` spawn configuration, and there is a new option to connect to multiple litecoinzd processes (Please see [Bitcoin Service Docs](services/litecoinzd.md) for more details). The services `db` and `address` are now a part of the `litecoinzd` service. Here is how to update `bitcore-node.json` configuration options:
 
 **Before**:
 ```json
@@ -28,7 +28,7 @@ To start reindexing add `reindex=1` during the **first startup only**.
   "port": 3001,
   "services": [
     "address",
-    "bitcoind",
+    "litecoinzd",
     "db",
     "web"
   ]
@@ -41,11 +41,11 @@ To start reindexing add `reindex=1` during the **first startup only**.
   "network": "livenet",
   "port": 3001,
   "services": [
-    "bitcoind",
+    "litecoinzd",
     "web"
   ],
   "servicesConfig": {
-    "bitcoind": {
+    "litecoinzd": {
       "spawn": {
         "datadir": "/home/<username>/.bitcoin",
         "exec": "/home/<username>/bitcore-node/bin/litecoinzd"
@@ -73,5 +73,5 @@ rpcpassword=<password>
 **Important**: Once changes have been made you'll also need to add the `reindex=1` option **only for the first startup** to regenerate the indexes. Once this is complete you should be able to remove the `bitcore-node.db` directory with the old indexes.
 
 ### API and Service Changes
-- Many API methods that were a part of the `db` and `address` services are now a part of the `bitcoind` service. Please see [Bitcoin Service Docs](services/bitcoind.md) for more details.
-- The `db` and `address` services are deprecated, most of the functionality still exists. Any services that were extending indexes with the `db` service, will need to manage chain state itself, or build the indexes within `bitcoind`.
+- Many API methods that were a part of the `db` and `address` services are now a part of the `litecoinzd` service. Please see [Bitcoin Service Docs](services/litecoinzd.md) for more details.
+- The `db` and `address` services are deprecated, most of the functionality still exists. Any services that were extending indexes with the `db` service, will need to manage chain state itself, or build the indexes within `litecoinzd`.
