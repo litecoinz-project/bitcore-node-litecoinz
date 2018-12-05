@@ -4,8 +4,8 @@
   "author": "BitPay <dev@bitpay.com>",
   "version": "3.1.2",
   "main": "./index.js",
-  "repository": "git://github.com/joebl4ck/bitcore-node-litecoinz.git",
-  "homepage": "https://github.com/joebl4ck/bitcore-node-litecoinz",
+  "repository": "git://github.com/litecoinz-project/bitcore-node-litecoinz.git",
+  "homepage": "https://github.com/litecoinz-project/bitcore-node-litecoinz",
   "bugs": {
     "url": "https://github.com/bitpay/bitcore-node/issues"
   },
