@@ -90,7 +90,7 @@ mocha -w -R spec test/services/litecoinzd.unit.js
 
 To run a specific regtest:
 ```bash
-mocha -R spec regtest/litecoinzd.js
+mocha -R spec regtest/bitcoind.js
 ```
 
 ## Running a Development Node
