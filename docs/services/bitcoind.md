@@ -10,7 +10,7 @@ The default configuration will include a "spawn" configuration in "litecoinzd". 
   "servicesConfig": {
     "litecoinzd": {
       "spawn": {
-        "datadir": "/home/bitcore/.bitcoin",
+        "datadir": "/home/bitcore/.litecoinz",
         "exec": "/home/bitcore/bitcoin/src/litecoinzd"
       }
     }

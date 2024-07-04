@@ -121,7 +121,7 @@ Edit `bitcore-node.json` with something similar to:
   "servicesConfig": {
     "litecoinzd": {
       "spawn": {
-        "datadir": "/home/<youruser>/.bitcoin",
+        "datadir": "/home/<youruser>/.litcoinz",
         "exec": "/home/<youruser>/bitcoin/src/litecoinzd"
       }
     }

@@ -23,7 +23,7 @@ To start reindexing add `reindex=1` during the **first startup only**.
 **Before**:
 ```json
 {
-  "datadir": "/home/<username>/.bitcoin",
+  "datadir": "/home/<username>/.litcoinz",
   "network": "livenet",
   "port": 3001,
   "services": [
@@ -47,7 +47,7 @@ To start reindexing add `reindex=1` during the **first startup only**.
   "servicesConfig": {
     "litecoinzd": {
       "spawn": {
-        "datadir": "/home/<username>/.bitcoin",
+        "datadir": "/home/<username>/.litcoinz",
         "exec": "/home/<username>/bitcore-node/bin/litecoinzd"
       }
     }
